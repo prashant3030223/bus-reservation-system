@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header-css}"></head>
+<body>
+<div th:replace="~{fragments/header :: navbar}"></div>
+<div class="container mt-5">
+    <div class="form-container">
+        <h2>Confirm Your Booking</h2>
+        <div class="card mb-4">
+            <div class="card-header">Trip Details</div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${schedule.bus.busName}">Bus Name</h5>
+                <p class="card-text"><strong>Route:</strong> <b th:text="${schedule.source}"></b> To <b th:text="${schedule.destination}"></b></p>
+                <p class="card-text"><strong>Departure:</strong> <span th:text="${#temporals.format(schedule.departureTime, 'dd-MMM-yyyy HH:mm')}"></span></p>
+                <p class="card-text"><strong>Price:</strong> <b th:text="'₹' + ${schedule.price} + ' per seat'"></b></p>
+            </div>
+        </div>
+        <form th:action="@{/book/confirm}" th:object="${booking}" method="post">
+            <input type="hidden" name="scheduleId" th:value="${schedule.id}" />
+            <div class="mb-3">
+                <label for="seatNumbers" class="form-label">Seat Numbers</label>
+                <input type="text" class="form-control" id="seatNumbers" th:field="*{seatNumbers}" placeholder="e.g., A5, B2" required>
+                <div class="form-text">Please enter seat numbers separated by a comma.</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Confirm Booking</button>
+        </form>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

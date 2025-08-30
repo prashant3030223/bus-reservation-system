@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header-css}"></head>
+<body>
+<div th:replace="~{fragments/header :: navbar}"></div>
+
+<main class="main-content auth-page d-flex align-items-center justify-content-center">
+    <div class="container" style="max-width: 500px;">
+        <div class="auth-container">
+            <h2>Create an Account</h2>
+            <div th:if="${param.success}" class="alert alert-success">Registration successful! Please login.</div>
+            
+            <form method="post" th:action="@{/register}" th:object="${userDto}">
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                    <input type="text" class="form-control form-control-lg" placeholder="Full Name" th:field="*{fullName}" required>
+                </div>
+                <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-danger mb-2"></p>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" class="form-control form-control-lg" placeholder="Email" th:field="*{email}" required>
+                </div>
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger mb-2"></p>
+
+                <div class="input-group mb-4">
+                    <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" th:field="*{password}" required>
+                </div>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger mb-2"></p>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100">Register</button>
+            </form>
+            <p class="mt-4 text-center">Pehle se account hai? <a th:href="@{/login}">Login karein</a></p>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

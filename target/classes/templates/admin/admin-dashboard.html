@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header-css}"></head>
+<body>
+<div th:replace="~{fragments/header :: navbar}"></div>
+<div class="container mt-5">
+    <div class="content-container">
+        <div class="text-center">
+            <h2 class="mb-3">Admin Dashboard</h2>
+            <p class="lead">Welcome to the Admin Panel. Yahan se aap buses, schedules, aur bookings manage kar sakte hain.</p>
+        </div>
+        <div class="row text-center my-4">
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="${totalBuses}">0</h3>
+                        <p class="card-text">Total Buses</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="${totalSchedules}">0</h3>
+                        <p class="card-text">Total Schedules</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="${totalBookings}">0</h3>
+                        <p class="card-text">Total Bookings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-3 col-8 mx-auto">
+            <a th:href="@{/admin/buses}" class="btn btn-primary btn-lg"><i class="fa-solid fa-bus-simple me-2"></i>Manage Buses</a>
+            <a th:href="@{/admin/schedules}" class="btn btn-secondary btn-lg"><i class="fa-solid fa-calendar-days me-2"></i>Manage Schedules</a>
+            <a th:href="@{/admin/bookings}" class="btn btn-dark btn-lg"><i class="fa-solid fa-ticket me-2"></i>View All Bookings</a>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>
